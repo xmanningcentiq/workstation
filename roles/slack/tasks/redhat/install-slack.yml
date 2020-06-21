@@ -1,0 +1,31 @@
+---
+
+- name: Ensure RPM GPG key is present
+  rpm_key:
+    key: https://packagecloud.io/slacktechnologies/slack/gpgkey
+    state: present
+
+- name: Ensure YUM repository file exists
+  yum_repository:
+    name: slack
+    description: Slack repository
+    file: slack
+    baseurl: "https://packagecloud.io/slacktechnologies/slack/{{ ansible_distribution | lower }}/{{ ansible_distribution_version | lower }}/$basearch"
+    state: present
+    enabled: true
+    gpgcheck: false
+    gpgkey: https://packagecloud.io/gpg.key
+
+- name: Ensure slack is installed (YUM)
+  yum:
+    name: slack
+    state: present
+    update_cache: true
+  when: ansible_pkg_mgr == "yum"
+
+- name: Ensure Slack is installed (DNF)
+  yum:
+    name: slack
+    state: present
+    update_cache: true
+  when: ansible_pkg_mgr == "dnf"

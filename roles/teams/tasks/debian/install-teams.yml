@@ -1,0 +1,18 @@
+---
+
+- name: Ensure Teams Repository key exists
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Ensure APT repository file exists
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main"
+    state: present
+    filename: teams
+
+- name: Ensure Teams is installed
+  apt:
+    name: teams
+    state: present
+    update_cache: true

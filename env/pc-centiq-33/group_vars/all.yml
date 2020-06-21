@@ -1,0 +1,79 @@
+---
+
+controller_ansible_venv_site_packages: true
+controller_ansible_galaxy_roles:
+  - name: awscli
+    src: xanmanning.awscli
+  - name: azurecli
+    src: xanmanning.azurecli
+  - name: diagrams
+    src: xanmanning.diagrams
+  - name: enpass
+    src: xanmanning.enpass
+    become: true
+  - name: go
+    src: xanmanning.go
+  - name: slack
+    become: true
+  - name: sshuttle
+    src: xanmanning.sshuttle
+  - name: molecule
+    src: xanmanning.molecule
+  - name: netextender
+    become: true
+  - name: teams
+    become: true
+  - name: terraform
+    src: xanmanning.terraform
+  - name: vagrant
+    src: xanmanning.vagrant
+    become: true
+  - name: virtualbox
+    src: xanmanning.virtualbox
+    become: true
+  - name: vscode
+    src: xanmanning.vscode
+    become: true
+
+workstation_packages:
+  - deja-dup
+  - deja-dup-nautilus
+  - gnome-tweaks
+  - git
+  - ruby
+  - mtr
+  - chrony
+  - graphviz
+  - gimp
+  - whois
+  - vim
+  - gvim
+  - tmux
+  - jq
+  - vpnc
+  - NetworkManager-vpnc
+  - NetworkManager-vpnc-gnome
+  - openconnect
+  - NetworkManager-openconnect
+  - NetworkManager-openconnect-gnome
+  - zip
+  - unzip
+  - gnupg2
+  - pwgen
+  - chrome-gnome-shell
+  - terminator
+  - remmina
+  - podman
+  - podman-compose
+  - gpaste
+  - gpaste-ui
+  - gnome-shell-extension-common
+  - gnome-shell-extension-gpaste
+  - gnome-shell-extension-no-topleft-hot-corner
+  - gnome-shell-extension-topicons-plus
+  - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+  # - https://downloads.slack-edge.com/linux_releases/slack-4.4.3-0.1.fc21.x86_64.rpm
+  # - https://packages.microsoft.com/yumrepos/ms-teams/teams-1.3.00.5153-1.x86_64.rpm
+
+workstation_pip_packages:
+  - tmuxp==1.2.6

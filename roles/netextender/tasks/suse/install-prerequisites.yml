@@ -1,0 +1,7 @@
+---
+
+- name: Ensure java-latest-openjdk is installed
+  zypper:
+    name: java-latest-openjdk
+    state: present
+    update_cache: true

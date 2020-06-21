@@ -1,0 +1,3 @@
+---
+
+controller_ansible_tmp_requirements_path: "{{ playbook_dir }}/../controller-requirements.yml"

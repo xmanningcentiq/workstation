@@ -1,0 +1,13 @@
+roles/controller
+roles/awscli
+roles/azurecli
+roles/diagrams
+roles/enpass
+roles/go
+roles/molecule
+roles/sshuttle
+roles/terraform
+roles/vagrant
+roles/virtualbox
+roles/vscode
+controller-requirements.yml

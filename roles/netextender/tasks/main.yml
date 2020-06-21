@@ -1,0 +1,7 @@
+---
+
+- import_tasks: pre-checks.yml
+
+- include_tasks: "{{ ansible_os_family | lower }}/install-prerequisites.yml"
+
+- import_tasks: install-netextender.yml

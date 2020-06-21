@@ -1,0 +1,7 @@
+---
+
+- name: Ensure icedtea-web is installed (YUM)
+  apt:
+    name: icedtea-web
+    state: present
+    update_cache: true

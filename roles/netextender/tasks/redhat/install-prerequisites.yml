@@ -1,0 +1,15 @@
+---
+
+- name: Ensure icedtea-web is installed (YUM)
+  yum:
+    name: icedtea-web
+    state: present
+    update_cache: true
+  when: ansible_pkg_mgr == "yum"
+
+- name: Ensure icedtea-web is installed (DNF)
+  yum:
+    name: icedtea-web
+    state: present
+    update_cache: true
+  when: ansible_pkg_mgr == "dnf"

@@ -1,0 +1,19 @@
+---
+
+- name: Ensure NetExtender client is downloaded
+  get_url:
+    url: https://sslvpn.demo.sonicwall.com/NetExtender.x86_64.tgz
+    dest: /tmp/NetExtender.x86_64.tar.gz
+    mode: 0600
+
+- name: Ensure NetExtender client archive is extracted
+  unarchive:
+    src: /tmp/NetExtender.x86_64.tar.gz
+    dest: /opt/
+    remote_src: true
+
+- name: Install NetExtender
+  shell: "echo y | ./install"
+  args:
+    creates: /usr/bin/netExtenderGui
+    chdir: /opt/netExtenderClient

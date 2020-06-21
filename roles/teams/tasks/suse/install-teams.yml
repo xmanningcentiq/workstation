@@ -1,0 +1,19 @@
+---
+
+- name: Ensure RPM GPG key is present
+  rpm_key:
+    key: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Ensure Zypper repository file exists
+  zypper_repository:
+    name: teams
+    description: Microsoft Teams repository
+    repo: https://packages.microsoft.com/yumrepos/ms-teams
+    state: present
+
+- name: Ensure Teams is installed
+  zypper:
+    name: teams
+    state: present
+    update_cache: true

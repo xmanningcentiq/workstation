@@ -1,0 +1,6 @@
+---
+
+- name: Fail play if architecture is not amd64
+  fail:
+    msg: This role only supports x86_64 processors.
+  when: ansible_architecture != "x86_64"

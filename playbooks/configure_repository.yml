@@ -1,0 +1,6 @@
+---
+
+- name: Prepare repository to provision the system
+  hosts: workstation
+  roles:
+    - controller_roles

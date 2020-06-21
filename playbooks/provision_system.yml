@@ -1,0 +1,29 @@
+---
+
+- name: Provision workstation
+  hosts: workstation
+  become: true
+  tasks:
+    - name: Ensure roles defined in controller_ansible_galaxy_roles are run
+      include_role:
+        name: "{{ role.name }}"
+      when: controller_ansible_galaxy_roles is defined
+            and role.become is defined
+            and role.become
+      loop: "{{ controller_ansible_galaxy_roles }}"
+      loop_control:
+        loop_var: role
+
+    - name: Ensure system packages are installed
+      package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ workstation_packages }}"
+      when: workstation_packages is defined
+
+    - name: Ensure pip packages are installed
+      pip:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ workstation_pip_packages }}"
+      when: workstation_pip_packages is defined

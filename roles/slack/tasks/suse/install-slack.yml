@@ -1,0 +1,19 @@
+---
+
+- name: Ensure RPM GPG key is present
+  rpm_key:
+    key: https://packagecloud.io/gpg.key
+    state: present
+
+- name: Ensure Zypper repository file exists
+  zypper_repository:
+    name: slack
+    description: Slack repository
+    repo: "https://packagecloud.io/slacktechnologies/slack/{{ ansible_distribution | lower }}/{{ ansible_distribution_version | lower }}/$basearch"
+    state: present
+
+- name: Ensure Slack is installed
+  zypper:
+    name: slack
+    state: present
+    update_cache: true

@@ -1,0 +1,10 @@
+---
+
+- name: Provision workstation as an Ansible controller
+  hosts: workstation
+  vars:
+    controller_ansible_galaxy_roles:
+      - name: controller
+        src: xanmanning.controller
+  roles:
+    - controller

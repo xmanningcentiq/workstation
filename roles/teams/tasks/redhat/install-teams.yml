@@ -1,0 +1,31 @@
+---
+
+- name: Ensure RPM GPG key is present
+  rpm_key:
+    key: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Ensure YUM repository file exists
+  yum_repository:
+    name: teams
+    description: Microsoft Teams repository
+    file: teams
+    baseurl: https://packages.microsoft.com/yumrepos/ms-teams
+    state: present
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Ensure Teams is installed (YUM)
+  yum:
+    name: teams
+    state: present
+    update_cache: true
+  when: ansible_pkg_mgr == "yum"
+
+- name: Ensure Teams is installed (DNF)
+  yum:
+    name: teams
+    state: present
+    update_cache: true
+  when: ansible_pkg_mgr == "dnf"

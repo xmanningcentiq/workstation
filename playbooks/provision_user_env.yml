@@ -1,0 +1,14 @@
+---
+
+- name: Provision local user environment
+  hosts: workstation
+  tasks:
+    - name: Ensure roles defined in controller_ansible_galaxy_roles are run
+      include_role:
+        name: "{{ role.name }}"
+      when: controller_ansible_galaxy_roles is defined
+            and (role.become is not defined
+                 or not role.become)
+      loop: "{{ controller_ansible_galaxy_roles }}"
+      loop_control:
+        loop_var: role
