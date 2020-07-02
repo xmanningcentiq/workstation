@@ -23,7 +23,25 @@
 
     - name: Ensure pip packages are installed
       pip:
-        name: "{{ item }}"
+        name: "{{ item.name }}"
+        version: "{{ item.version }}"
         state: present
       loop: "{{ workstation_pip_packages }}"
       when: workstation_pip_packages is defined
+
+    - name: Ensure gem packages are installed (system)
+      gem:
+        name: "{{ item.name }}"
+        version: "{{ item.version }}"
+        state: present
+      loop: "{{ workstation_gem_packages }}"
+      when: workstation_gem_packages is defined
+            and rbenv.env is defined
+            and rbenv.env == 'system'
+
+    - name: Ensure Sign VBox Kernel Modules script exists
+      template:
+        src: sign-vbox-modules.sh.j2
+        dest: /root/sign-vbox-modules
+        mode: 0700
+      when: workstation_secureboot_enabled is defined

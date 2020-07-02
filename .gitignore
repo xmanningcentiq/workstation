@@ -10,4 +10,5 @@ roles/terraform
 roles/vagrant
 roles/virtualbox
 roles/vscode
+roles/rbenv
 controller-requirements.yml

@@ -12,3 +12,13 @@
       loop: "{{ controller_ansible_galaxy_roles }}"
       loop_control:
         loop_var: role
+
+    - name: Ensure gem packages are installed (user)
+      gem:
+        name: "{{ item.name }}"
+        version: "{{ item.version }}"
+        state: present
+      loop: "{{ workstation_gem_packages }}"
+      when: workstation_gem_packages is defined
+            and rbenv.env is defined
+            and rbenv.env == 'user'

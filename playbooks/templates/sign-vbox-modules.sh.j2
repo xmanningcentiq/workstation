@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# Source: https://gist.github.com/reillysiemens/ac6bea1e6c7684d62f544bd79b2182a4
+
+readonly hash_algo="sha256"
+readonly out_dir="/root/module-signing"
+readonly key="/root/module-signing/MOK.priv"
+readonly x509="/root/module-signing/MOK.der"
+
+readonly name="{{ ansible_hostname }}"
+readonly esc="\\e"
+readonly reset="${esc}[0m"
+
+green() { local string="${1}"; echo "${esc}[32m${string}${reset}"; }
+blue() { local string="${1}"; echo "${esc}[34m${string}${reset}"; }
+log() { local string="${1}"; echo "[$(blue $name)] ${string}"; }
+
+test -d || mkdir "${out_dir}"
+
+if [[ ! -f "${out_dir}/MOK.priv" ]] ; then
+    openssl \
+        req \
+        -new \
+        -x509 \
+        -newkey \
+        rsa:2048 \
+        -keyout "${out_dir}/MOK.priv" \
+        -outform DER \
+        -out "${out_dir}/MOK.der" \
+        -days 36500 \
+        -subj "/CN=${name}/"
+
+    chmod 0600 "${out_dir}/MOK.priv" "${out_dir}/MOK.der"
+
+    mokutil --import "${out_dir}/MOK.der"
+
+    echo "Please reboot to Enroll MOK ..."
+    exit 0
+fi
+
+alias sign-file="/usr/src/kernels/$(uname -r)/scripts/sign-file"
+
+[[ -z "${KBUILD_SIGN_PIN}" ]] && read -s "Passphrase for ${key}: " KBUILD_SIGN_PIN
+export KBUILD_SIGN_PIN
+
+for module in $(dirname $(modinfo -n vboxdrv))/*.ko; do
+  log "Signing $(green ${module})..."
+  sign-file "${hash_algo}" "${key}" "${x509}" "${module}"
+done
+
+modprobe vboxdrv
