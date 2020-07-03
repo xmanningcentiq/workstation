@@ -6,11 +6,9 @@
     state: present
 
 - name: Ensure Zypper repository file exists
-  zypper_repository:
-    name: slack
-    description: Slack repository
-    repo: "https://packagecloud.io/slacktechnologies/slack/{{ ansible_distribution | lower }}/{{ ansible_distribution_version | lower }}/$basearch"
-    state: present
+  get_url:
+    url: "https://packagecloud.io/install/repositories/slacktechnologies/slack/config_file.repo?{{ slack_repo_query_string }}"
+    dest: /etc/zypp/repos.d/slack.repo
 
 - name: Ensure Slack is installed
   zypper:

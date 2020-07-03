@@ -66,50 +66,79 @@ rbenv_users:
 molecule_version: 2.22.0
 
 workstation_packages:
-  - firefox
-  - thunderbird
-  - deja-dup
-  - deja-dup-nautilus
-  - gnome-tweaks
+  - yum-cron
+  - ca-certificates
+  - kernel-headers
+  - kernel-devel
+  - curl
+  - terminator
+  - tmux
+  - vim-X11
   - git
+  - jq
+  - python-pip
+  - python3
+  - python3-pip
   - ruby
+  - ruby-devel
+  - libffi-devel
+  - sqlite-devel
+  - rubygems
+  - openssh-server
+  - sshpass
   - mtr
   - chrony
-  - graphviz
-  - gimp
-  - whois
-  - vim
-  - gvim
-  - tmux
-  - jq
-  - vpnc
+  - gpaste
+  - gpaste-applet
+  - gnome-tweak-tool
+  - gnome-shell-extension-common
+  - gnome-shell-extension-gpaste
+  - gnome-shell-extension-no-hot-corner
+  - gstreamer-plugins-good
+  - gstreamer1-plugins-good
+  - gstreamer1-plugins-bad-free
+  - gstreamer1-plugins-ugly-free
+  - NetworkManager-openvpn
+  - NetworkManager-openvpn-gnome
   - NetworkManager-vpnc
   - NetworkManager-vpnc-gnome
-  - openconnect
   - NetworkManager-openconnect
-  - NetworkManager-openconnect-gnome
+  - openconnect
+  - vpnc
+  - vpnc-script
+  - java-1.8.0-openjdk
+  - freerdp
+  - vorbis-tools
+  - gimp
+  - thunderbird
+  - filezilla
+  - whois
   - zip
   - unzip
   - gnupg2
   - pwgen
-  - chrome-gnome-shell
-  - terminator
-  - remmina
-  - podman
-  - podman-compose
-  - gpaste
-  - gpaste-ui
-  - gnome-shell-extension-common
-  - gnome-shell-extension-gpaste
-  - gnome-shell-extension-no-topleft-hot-corner
-  - gnome-shell-extension-topicons-plus
-  - kernel-devel
-  - gcc
-  - make
-  - perl
-  - python3-devel
+  - pass
+  - pandoc
+  - texlive
+  - wkhtmltopdf
   - ShellCheck
-  - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+  - deja-dup
+  - deja-dup-nautilus
+  - graphviz
+  - libXScrnSaver
+  - lsof
+  - yum-utils
+  - device-mapper-persistent-data
+  - lvm2
+  - gcc
+  - bzip2
+  - libyaml-devel
+  - libffi-devel
+  - gdbm-devel
+  - ncurses-devel
+  - openssl-devel
+  - readline-devel
+  - zlib-devel
 
 workstation_pip_packages:
   - name: tmuxp
@@ -123,4 +152,4 @@ workstation_gem_packages:
   - name: rspec
     version: 3.9.0
 
-workstation_secureboot_enabled: true
+workstation_secureboot_enabled: false

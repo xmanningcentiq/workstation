@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 __PY3=$(command -v python3 || true)
 __PIP3=$(command -v pip3 || true)
@@ -28,7 +29,7 @@ if [[ -f "${__INVENTORY}" ]] ; then
 
     for playbook in ${__PLAYBOOKS[*]} ; do
         echo "PLAYBOOK: ${playbook}"
-        
+
         __REQUIRES_ROOT=$(grep "become: true" "playbooks/${playbook}.yml" || true)
 
         if [[ "${__REQUIRES_ROOT}" != "" ]] ; then

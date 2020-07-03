@@ -5,11 +5,10 @@
     url: https://packagecloud.io/slacktechnologies/slack/gpgkey
     state: present
 
-- name: Ensure APT repository file exists
-  apt_repository:
-    repo: "deb https://packagecloud.io/slacktechnologies/slack/{{ ansible_distribution | lower }}/ {{ ansible_distribution_version | lower }} main"
-    state: present
-    filename: slack
+- name: Ensure Apt repository file exists
+  get_url:
+    url: "https://packagecloud.io/install/repositories/slacktechnologies/slack/config_file.list?{{ slack_repo_query_string }}"
+    dest: /etc/apt/sources.list.d/slack.list
 
 - name: Ensure Slack is installed
   apt:

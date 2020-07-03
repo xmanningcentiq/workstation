@@ -1,4 +1,5 @@
 roles/controller
+roles/asciinema
 roles/awscli
 roles/azurecli
 roles/diagrams
@@ -12,3 +13,5 @@ roles/virtualbox
 roles/vscode
 roles/rbenv
 controller-requirements.yml
+.vagrant/
+*.retry

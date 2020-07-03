@@ -4,3 +4,7 @@
   fail:
     msg: This role only supports x86_64 processors.
   when: ansible_architecture != "x86_64"
+
+- name: Ensure query string is generated
+  set_fact:
+    slack_repo_query_string: "os={{ ansible_distribution | lower }}&dist={{ ansible_distribution_version | lower }}&source=script"

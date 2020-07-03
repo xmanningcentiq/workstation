@@ -42,6 +42,8 @@ fi
 [[ -z "${KBUILD_SIGN_PIN}" ]] && read -srp "Passphrase for ${key}: " KBUILD_SIGN_PIN
 export KBUILD_SIGN_PIN
 
+echo ""
+
 for module in "$(dirname "$(modinfo -n vboxdrv)")"/*.ko; do
   log "Signing $(green "${module}")..."
   ${sign_file} "${hash_algo}" "${key}" "${x509}" "${module}"

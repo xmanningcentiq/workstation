@@ -6,15 +6,9 @@
     state: present
 
 - name: Ensure YUM repository file exists
-  yum_repository:
-    name: slack
-    description: Slack repository
-    file: slack
-    baseurl: "https://packagecloud.io/slacktechnologies/slack/{{ ansible_distribution | lower }}/{{ ansible_distribution_version | lower }}/$basearch"
-    state: present
-    enabled: true
-    gpgcheck: false
-    gpgkey: https://packagecloud.io/gpg.key
+  get_url:
+    url: "https://packagecloud.io/install/repositories/slacktechnologies/slack/config_file.repo?{{ slack_repo_query_string }}"
+    dest: /etc/yum.repos.d/slack.repo
 
 - name: Ensure slack is installed (YUM)
   yum:
