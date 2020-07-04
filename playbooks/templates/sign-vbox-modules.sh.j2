@@ -45,8 +45,9 @@ export KBUILD_SIGN_PIN
 echo ""
 
 for module in "$(dirname "$(modinfo -n vboxdrv)")"/*.ko; do
-  log "Signing $(green "${module}")..."
+  module_name="$(basename "${module/.ko//}")"
+  log "Signing $(green "${module}") ..."
   ${sign_file} "${hash_algo}" "${key}" "${x509}" "${module}"
+  log "Loading $(green "${module_name}") ..."
+  modprobe "${module_name}"
 done
-
-modprobe vboxdrv
