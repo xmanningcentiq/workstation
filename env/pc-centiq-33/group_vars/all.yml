@@ -109,6 +109,9 @@ workstation_packages:
   - perl
   - python3-devel
   - ShellCheck
+  - libnsl
+  - libnsl2
+  - libnsl2-devel
   - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 workstation_pip_packages:
