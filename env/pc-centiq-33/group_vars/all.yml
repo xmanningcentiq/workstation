@@ -112,6 +112,7 @@ workstation_packages:
   - libnsl
   - libnsl2
   - libnsl2-devel
+  - vorbis-tools
   - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 workstation_pip_packages:
