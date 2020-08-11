@@ -15,6 +15,8 @@ controller_ansible_galaxy_roles:
     become: true
   - name: go
     src: xanmanning.go
+  - name: kind
+    src: xanmanning.kind
   - name: slack
     become: true
   - name: sshuttle

@@ -5,6 +5,7 @@ roles/azurecli
 roles/diagrams
 roles/enpass
 roles/go
+roles/kind
 roles/molecule
 roles/sshuttle
 roles/terraform
