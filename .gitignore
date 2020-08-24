@@ -6,6 +6,7 @@ roles/diagrams
 roles/enpass
 roles/go
 roles/kind
+roles/kubectl
 roles/minikube
 roles/molecule
 roles/sshuttle
