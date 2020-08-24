@@ -15,8 +15,8 @@ controller_ansible_galaxy_roles:
     become: true
   - name: go
     src: xanmanning.go
-  - name: kind
-    src: xanmanning.kind
+  - name: minikube
+    src: xanmanning.minikube
   - name: slack
     become: true
   - name: sshuttle
@@ -67,6 +67,8 @@ rbenv_users:
 
 molecule_version: 2.22.0
 
+sshuttle_version: 0.78.5
+
 workstation_packages:
   - firefox
   - thunderbird
@@ -115,6 +117,8 @@ workstation_packages:
   - libnsl2
   - libnsl2-devel
   - vorbis-tools
+  - virt-manager
+  - libvirt-client
   - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 workstation_pip_packages:
