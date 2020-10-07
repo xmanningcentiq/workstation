@@ -67,8 +67,6 @@ rbenv:
 rbenv_users:
   - xmanning
 
-molecule_version: 2.22.0
-
 sshuttle_version: 0.78.5
 
 workstation_packages:
