@@ -103,6 +103,7 @@ workstation_packages:
   - remmina
   - podman
   - podman-compose
+  - podman-docker
   - gpaste
   - gpaste-ui
   - gnome-shell-extension-common
