@@ -9,8 +9,7 @@ if [[ ! -f /.provision ]] ; then
   THISHOST="$(hostname)"
   TARGETHOST="${THISHOST:0:-1}"
   if [[ -d "/vagrant/env/${TARGETHOST}" ]] ; then
-    cp -r "/vagrant/env/${TARGETHOST}" "/vagrant/env/${THISHOST}"
-    echo "virtualbox_skip_virtualization_test: true" >> "/vagrant/env/${THISHOST}/group_vars/all.yml"
+    cp -arv "/vagrant/env/${TARGETHOST}" "/vagrant/env/${THISHOST}"
     echo "[Done]"
   else
     if [[ "${THISHOST: -1}" != "x" ]] ; then
@@ -35,8 +34,7 @@ if [[ ! -f /.provision ]] ; then
   THISHOST="$(hostname)"
   TARGETHOST="${THISHOST:0:-1}"
   if [[ -d "/vagrant/env/${TARGETHOST}" ]] ; then
-    cp -r "/vagrant/env/${TARGETHOST}" "/vagrant/env/${THISHOST}"
-    echo "virtualbox_skip_virtualization_test: true" >> "/vagrant/env/${THISHOST}/group_vars/all.yml"
+    cp -arv "/vagrant/env/${TARGETHOST}" "/vagrant/env/${THISHOST}"
     echo "[Done]"
   else
     if [[ "${THISHOST: -1}" != "x" ]] ; then
@@ -69,6 +67,9 @@ Vagrant.configure("2") do |config|
     end
 
     ws.vm.provision "shell", inline: $provisioningScriptRHEL8
+    ws.vbguest.installer_options = {
+      allow_kernel_upgrade: true
+    }
   end
 
   ##
@@ -87,5 +88,8 @@ Vagrant.configure("2") do |config|
   #   end
   #
   #   ws.vm.provision "shell", inline: $provisioningScriptRHEL7
+  #   ws.vbguest.installer_options = {
+  #     allow_kernel_upgrade: true
+  #   }
   # end
 end

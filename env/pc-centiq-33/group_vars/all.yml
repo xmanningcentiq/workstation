@@ -86,12 +86,20 @@ workstation_packages:
   - gvim
   - tmux
   - jq
+  - libreswan
+  - strongswan
+  - strongswan-libipsec
+  - NetworkManager-strongswan
+  - NetworkManager-strongswan-gnome
   - vpnc
   - NetworkManager-vpnc
   - NetworkManager-vpnc-gnome
   - openconnect
   - NetworkManager-openconnect
   - NetworkManager-openconnect-gnome
+  - sstp-client
+  - NetworkManager-sstp
+  - NetworkManager-sstp-gnome
   - zip
   - unzip
   - gnupg2
@@ -120,7 +128,7 @@ workstation_packages:
   - vorbis-tools
   - virt-manager
   - libvirt-client
-  - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+  #- https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 workstation_pip_packages:
   - name: tmuxp
@@ -133,5 +141,10 @@ workstation_gem_packages:
     version: 3.1.2
   - name: rspec
     version: 3.9.0
+  - name: travis
+    version: 1.10.0
 
 workstation_secureboot_enabled: true
+
+virtualbox_skip_virtualization_test: "{{ true if ansible_virtualization_type == 'virtualbox' else false }}"
+minikube_skip_virtualization_test: "{{ true if ansible_virtualization_type == 'virtualbox' else false }}"

@@ -4,21 +4,10 @@
   hosts: workstation
   become: true
   tasks:
-    - name: Ensure roles defined in controller_ansible_galaxy_roles are run
-      include_role:
-        name: "{{ role.name }}"
-      when: controller_ansible_galaxy_roles is defined
-            and role.become is defined
-            and role.become
-      loop: "{{ controller_ansible_galaxy_roles }}"
-      loop_control:
-        loop_var: role
-
     - name: Ensure system packages are installed
       package:
-        name: "{{ item }}"
+        name: "{{ workstation_packages }}"
         state: present
-      loop: "{{ workstation_packages }}"
       when: workstation_packages is defined
 
     - name: Ensure pip packages are installed
@@ -45,3 +34,13 @@
         dest: /root/sign-vbox-modules
         mode: 0700
       when: workstation_secureboot_enabled is defined
+
+    - name: Ensure roles defined in controller_ansible_galaxy_roles are run
+      include_role:
+        name: "{{ role.name }}"
+      when: controller_ansible_galaxy_roles is defined
+            and role.become is defined
+            and role.become
+      loop: "{{ controller_ansible_galaxy_roles }}"
+      loop_control:
+        loop_var: role
