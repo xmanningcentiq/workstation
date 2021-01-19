@@ -77,6 +77,7 @@ workstation_packages:
   - gnome-tweaks
   - git
   - ruby
+  - expect
   - mtr
   - chrony
   - graphviz
@@ -100,6 +101,7 @@ workstation_packages:
   - sstp-client
   - NetworkManager-sstp
   - NetworkManager-sstp-gnome
+  - wireguard-tools
   - zip
   - unzip
   - gnupg2
