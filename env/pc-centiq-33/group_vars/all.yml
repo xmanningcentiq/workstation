@@ -137,6 +137,8 @@ workstation_pip_packages:
     version: 1.2.6
 
 workstation_gem_packages:
+  - name: aruba
+    version: 0.14.14
   - name: bundler
     version: 2.0.2
   - name: cucumber
