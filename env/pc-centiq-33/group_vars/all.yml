@@ -110,6 +110,7 @@ workstation_packages:
   - terminator
   - remmina
   - podman
+  - buildah
   - podman-compose
   - podman-docker
   - gpaste
@@ -130,6 +131,7 @@ workstation_packages:
   - vorbis-tools
   - virt-manager
   - libvirt-client
+  - patch
   #- https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 workstation_pip_packages:
